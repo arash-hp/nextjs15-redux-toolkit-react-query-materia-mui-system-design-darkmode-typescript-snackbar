@@ -1,5 +1,5 @@
-import AppBar from "@/layouts/DefaultLayout";
-import ThemeProvider from "@/theme/ThemeProvider";
+import MainLayout from "@/layouts/MainLayout";
+import { QueryProvider, StoreProvider, ThemeProvider } from "@/providers";
 
 export default function RootLayout({
   children,
@@ -9,9 +9,13 @@ export default function RootLayout({
   return (
     <html>
       <body dir="rtl">
-        <ThemeProvider>
-          <AppBar>{children}</AppBar>
-        </ThemeProvider>
+        <StoreProvider>
+          <QueryProvider>
+            <ThemeProvider>
+              <MainLayout>{children}</MainLayout>
+            </ThemeProvider>
+          </QueryProvider>
+        </StoreProvider>
       </body>
     </html>
   );

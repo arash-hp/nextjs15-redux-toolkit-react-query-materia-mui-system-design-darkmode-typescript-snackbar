@@ -1,10 +1,14 @@
 "use client";
+import { themeOptions } from "@/theme/theme";
 import createCache from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
-import { createTheme, ThemeProvider as MuiThemeProvider } from "@mui/material";
+import {
+  createTheme,
+  CssBaseline,
+  ThemeProvider as MuiThemeProvider,
+} from "@mui/material";
 import { prefixer } from "stylis";
 import rtlPlugin from "stylis-plugin-rtl";
-import { themeOptions } from "./theme";
 
 const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const theme = createTheme({
@@ -17,6 +21,7 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   });
   return (
     <CacheProvider value={cacheRtl}>
+      <CssBaseline />
       <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>
     </CacheProvider>
   );

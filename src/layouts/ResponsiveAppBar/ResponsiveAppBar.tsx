@@ -1,22 +1,23 @@
 import MenuIcon from "@/components/icons/MenuIcon";
-import AppBar from "@mui/material/AppBar";
-import Avatar from "@mui/material/Avatar";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Toolbar from "@mui/material/Toolbar";
-import Tooltip from "@mui/material/Tooltip";
-import Typography from "@mui/material/Typography";
+import {
+  Avatar,
+  Box,
+  Button,
+  IconButton,
+  Menu,
+  MenuItem,
+  AppBar as MUIAppBar,
+  Toolbar,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import React, { useCallback, useState } from "react";
 import Container from "../Container";
 import { styles } from "./styles";
-
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-function ResponsiveAppBar() {
+function AppBar() {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
@@ -42,7 +43,7 @@ function ResponsiveAppBar() {
   }, []);
 
   return (
-    <AppBar position="fixed">
+    <MUIAppBar position="fixed">
       <Container>
         <Toolbar disableGutters>
           <Typography variant="h6" noWrap component="a" sx={styles.logo}>
@@ -137,7 +138,7 @@ function ResponsiveAppBar() {
           </Box>
         </Toolbar>
       </Container>
-    </AppBar>
+    </MUIAppBar>
   );
 }
-export default ResponsiveAppBar;
+export default AppBar;
