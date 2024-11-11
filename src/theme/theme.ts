@@ -1,6 +1,8 @@
-import { ThemeOptions } from "@mui/material";
+import { ThemeOptions } from '@mui/material';
+import palette from './palette';
 
 export const themeOptions: ThemeOptions = {
-  direction: "rtl",
+  direction: 'rtl',
+  palette: palette('light'),
   spacing: 8,
 };

@@ -1,6 +1,6 @@
-import MainLayout from "@/layouts/MainLayout";
-import { QueryProvider, StoreProvider, ThemeProvider } from "@/providers";
-
+import { ThemeContextProvider } from '@/context';
+import { MainLayout } from '@/layouts';
+import { QueryProvider, SnackbarProvider, StoreProvider } from '@/providers';
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -11,9 +11,11 @@ export default function RootLayout({
       <body dir="rtl">
         <StoreProvider>
           <QueryProvider>
-            <ThemeProvider>
-              <MainLayout>{children}</MainLayout>
-            </ThemeProvider>
+            <ThemeContextProvider>
+              <SnackbarProvider>
+                <MainLayout>{children}</MainLayout>
+              </SnackbarProvider>
+            </ThemeContextProvider>
           </QueryProvider>
         </StoreProvider>
       </body>

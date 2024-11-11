@@ -1,5 +1,5 @@
-import { ContainerProps, Container as MUIContainer } from "@mui/material";
-import { ReactNode } from "react";
+import { ContainerProps, Container as MUIContainer } from '@mui/material';
+import { ReactNode } from 'react';
 
 interface containerTypes extends ContainerProps {
   children: ReactNode;

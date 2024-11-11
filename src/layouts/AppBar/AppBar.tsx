@@ -1,4 +1,5 @@
-import MenuIcon from "@/components/icons/MenuIcon";
+'use client';
+import MenuIcon from '@/components/icons/MenuIcon';
 import {
   Avatar,
   Box,
@@ -10,29 +11,26 @@ import {
   Toolbar,
   Tooltip,
   Typography,
-} from "@mui/material";
-import React, { useCallback, useState } from "react";
-import Container from "../Container";
-import { styles } from "./styles";
-const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+} from '@mui/material';
+import React, { useCallback, useState } from 'react';
+import { Container } from '@/components';
+import { styles } from './styles';
+import { ToggleColorMode } from './ToggleColorMode';
+import { AppAppBarType } from './types';
 
-function AppBar() {
+const pages = ['Products', 'Pricing', 'Blog'];
+const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
+function AppBar({ mode, toggleColorMode }: AppAppBarType) {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
-  const handleOpenNavMenu = useCallback(
-    (event: React.MouseEvent<HTMLElement>) => {
-      setAnchorElNav(event.currentTarget);
-    },
-    []
-  );
-  const handleOpenUserMenu = useCallback(
-    (event: React.MouseEvent<HTMLElement>) => {
-      setAnchorElUser(event.currentTarget);
-    },
-    []
-  );
+  const handleOpenNavMenu = useCallback((event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElNav(event.currentTarget);
+  }, []);
+  const handleOpenUserMenu = useCallback((event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElUser(event.currentTarget);
+  }, []);
 
   const handleCloseNavMenu = useCallback(() => {
     setAnchorElNav(null);
@@ -49,6 +47,9 @@ function AppBar() {
           <Typography variant="h6" noWrap component="a" sx={styles.logo}>
             LOGO
           </Typography>
+
+          <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
+
           <Box sx={styles.hamburger}>
             <IconButton onClick={handleOpenNavMenu}>
               <MenuIcon />
@@ -56,21 +57,21 @@ function AppBar() {
             <Menu
               anchorEl={anchorElNav}
               anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "center",
+                vertical: 'bottom',
+                horizontal: 'center',
               }}
               keepMounted
               transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
+                vertical: 'top',
+                horizontal: 'left',
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              sx={{ display: { xs: "block", md: "none" } }}
+              sx={{ display: { xs: 'block', md: 'none' } }}
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: "center" }}>{page}</Typography>
+                  <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -82,25 +83,20 @@ function AppBar() {
             href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
-              display: { xs: "flex", md: "none" },
+              display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
-              fontFamily: "monospace",
+              fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
             }}
           >
             LOGO
           </Typography>
           <Box sx={styles.linkBox}>
             {pages.map((page) => (
-              <Button
-                color="warning"
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={styles.link}
-              >
+              <Button color="warning" key={page} onClick={handleCloseNavMenu} sx={styles.link}>
                 {page}
               </Button>
             ))}
@@ -108,7 +104,7 @@ function AppBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -116,22 +112,20 @@ function AppBar() {
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
+                vertical: 'top',
+                horizontal: 'right',
               }}
               keepMounted
               transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
+                vertical: 'top',
+                horizontal: 'right',
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography sx={{ textAlign: "center" }}>
-                    {setting}
-                  </Typography>
+                  <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
                 </MenuItem>
               ))}
             </Menu>
